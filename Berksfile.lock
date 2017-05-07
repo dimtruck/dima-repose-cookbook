@@ -1,0 +1,47 @@
+DEPENDENCIES
+  apt
+  dima-repose
+    path: .
+    metadata: true
+  java
+  poise-python
+  repose
+    git: https://github.com/rackerlabs/cookbook-repose.git
+    revision: 9c6d644aa5710af94b4b8fe048aefbbebb740961
+
+GRAPH
+  apt (6.1.0)
+  compat_resource (12.19.0)
+  dima-repose (0.0.1)
+    apt (>= 0.0.0)
+    poise-python (>= 0.0.0)
+    repose (>= 0.0.0)
+    runit (>= 0.0.0)
+  homebrew (4.1.0)
+  java (1.49.0)
+    apt (>= 0.0.0)
+    homebrew (>= 0.0.0)
+    windows (>= 0.0.0)
+  ohai (5.1.0)
+  packagecloud (0.3.0)
+  poise (2.8.1)
+  poise-archive (1.5.0)
+    poise (~> 2.6)
+  poise-languages (2.1.1)
+    poise (~> 2.5)
+    poise-archive (~> 1.0)
+  poise-python (1.6.0)
+    poise (~> 2.7)
+    poise-languages (~> 2.0)
+  repose (3.3.9)
+    apt (>= 0.0.0)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
+  runit (3.0.5)
+    packagecloud (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+  windows (3.0.5)
+    ohai (>= 4.0.0)
+  yum (3.13.0)
+  yum-epel (2.1.1)
+    compat_resource (>= 12.16.3)

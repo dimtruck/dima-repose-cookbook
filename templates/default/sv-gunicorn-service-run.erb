@@ -1,0 +1,5 @@
+#!/bin/sh
+ulimit -c unlimited
+export FQDN=`hostname -f`
+
+exec chpst -u daemon gunicorn httpbin:app
