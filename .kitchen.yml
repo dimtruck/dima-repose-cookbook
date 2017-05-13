@@ -1,0 +1,32 @@
+---
+driver:
+  name: docker
+  privileged: true
+  disable_upstart: false
+  run_command: /sbin/init
+  provision_command:
+    - mkdir -p /var/run/sshd
+driver_config:
+  image: ubuntu-upstart:14.04
+
+provisioner:
+  name: chef_zero
+  encrypted_data_bag_secret_key_path: 'test/integration/encrypted_data_bag_secret'
+  data_bags_path: data_bags
+  client_rb:
+    file_atomic_update: false
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+- name: default
+  run_list:
+    - apt
+    - java
+    - recipe[dima-repose::default]
+
+- name: endpoint
+  run_list:
+    - apt
+    - recipe[dima-repose::endpoint]
