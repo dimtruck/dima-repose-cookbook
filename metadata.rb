@@ -16,6 +16,7 @@ if respond_to?(:source_url)
 end
 
 depends 'apt'
+depends 'java'
 depends 'repose'
 depends 'poise-python'
 depends 'runit'

@@ -20,7 +20,9 @@ desc 'Run chefspec unit tests'
 RSpec::Core::RakeTask.new(:unit) do |t|
   t.rspec_opts = [].tap do |a|
     a.push('--color')
-    a.push('--format progress')
+    a.push('-r rspec_junit_formatter')
+    a.push('--format RspecJunitFormatter')
+    a.push('-o junit.xml')
   end.join(' ')
   t.pattern = 'test/unit/spec/*_spec.rb'
 end
