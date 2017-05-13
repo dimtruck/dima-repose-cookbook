@@ -1,0 +1,24 @@
+{
+  "id": "repose",
+  "uri": {
+    "encrypted_data": "sJx35Lxv7W7K+Mh/F37QZkrjXVaob56kUecjZMsrc5PD8EV2tV+p0mE=\n",
+    "iv": "DVabFcELGd9iGniB\n",
+    "auth_tag": "BCwYJwY+Lx/gIjYY/rA8OQ==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  },
+  "user": {
+    "encrypted_data": "p75bSoXNh7RrdvzYTRk0FJfCEiT+F/0lJuiruQRqP7X4flBby7eXx90=\n",
+    "iv": "18Ku/C61JENHU2P4\n",
+    "auth_tag": "qOshAm7b0voxXUhZCmTq1g==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  },
+  "pass": {
+    "encrypted_data": "US2tTJxkTZGIv7j18UUmpaaLlkw6BDg8RkkULYYxJYYf1jT6\n",
+    "iv": "miQKB6Uyp1CxP9w2\n",
+    "auth_tag": "BC02jF16wJglXE1SVpFk9Q==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  }
+}

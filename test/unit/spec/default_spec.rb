@@ -8,6 +8,10 @@ describe 'dima-repose::default' do
     ChefSpec::SoloRunner.new(UBUNTU_OPTS).converge(described_recipe)
   end
 
+  it 'includes the `java::oracle` recipe' do
+    expect(chef_run).to include_recipe('java::oracle')
+  end
+
   it 'includes the `repose::install` recipe' do
     expect(chef_run).to include_recipe('repose::install')
   end
@@ -38,5 +42,21 @@ describe 'dima-repose::default' do
     expect(chef_run).to render_file(
       '/etc/repose/system-model.cfg.xml'
     ).with_content(include('<filter name="url-extractor-to-header" />'))
+  end
+
+  it 'populates /etc/init/repose-valve.conf' do
+    expect(chef_run).to render_file(
+      '/etc/init/repose-valve.conf'
+    )
+  end
+
+  it 'deletes /etc/init.d/repose-valve' do
+    expect(chef_run).to delete_file(
+      '/etc/init.d/repose-valve'
+    )
+  end
+
+  it 'enables repose-valve service' do
+    expect(chef_run).to enable_service('repose-valve')
   end
 end
