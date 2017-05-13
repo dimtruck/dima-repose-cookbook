@@ -1,26 +1,20 @@
-pipeline {
-    agent any
+node {
+    stage "Prepare environment"
+        checkout scm
+        def environment  = docker.build 'cloudbees-node'
 
-    stages {
-        stage('Build') {
-            docker.image('ruby:2.3.1').inside {
-              stage("Install Bundler") {
-                sh "gem install bundler --no-rdoc --no-ri"
-              }
-            }
-            steps {
-                echo 'Building..'
-            }
+        environment.inside {
+            stage "Checkout and build deps"
+                sh "npm install"
+
+            stage "Validate types"
+                sh "./node_modules/.bin/flow"
+
+            stage "Test and validate"
+                sh "npm install gulp-cli && ./node_modules/.bin/gulp"
+                junit 'reports/**/*.xml'
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
-    }
+
+    stage "Cleanup"
+        deleteDir()
 }
