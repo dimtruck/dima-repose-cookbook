@@ -13,6 +13,9 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                sh 'bundle exec rake'
+                checkstyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: 'int-lint-results.xml', unHealthy: ''
+
             }
         }
         stage('Deploy') {
@@ -20,5 +23,10 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+    }
+    post {
+      always {
+        deleteDir() /* clean up our workspace */
+      }
     }
 }

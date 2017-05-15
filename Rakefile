@@ -7,6 +7,9 @@ require 'foodcritic'
 desc 'Run RuboCop on the lib directory'
 RuboCop::RakeTask.new(:rubocop) do |task|
   task.fail_on_error = true
+  task.requires = ['rubocop/formatter/checkstyle_formatter']
+  task.formatters = ['RuboCop::Formatter::CheckstyleFormatter']
+  task.options = ['--out', 'int-lint-results.xml']  
 end
 
 desc 'Foodcritic linter'
