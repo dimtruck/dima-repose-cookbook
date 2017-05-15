@@ -14,8 +14,12 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh 'bundle exec rake'
-                checkstyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: 'int-lint-results.xml', unHealthy: ''
 
+            }
+            post {
+              always {
+                checkstyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: 'int-lint-results.xml', unHealthy: ''
+              }
             }
         }
         stage('Deploy') {
