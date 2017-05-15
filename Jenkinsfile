@@ -7,21 +7,22 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'bundle install --path vendor'
+                sh 'bundle install'
             }
         }
-        stage('Lint Test') {
+        stage('Local Tests') {
             steps {
                 echo 'Testing..'
                 sh 'bundle exec rake rubocop'
                 sh 'bundle exec rake foodcritic'
+                sh 'bundle exec rake unit'
 
             }
             post {
               always {
                 checkstyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: 'int-lint-results.xml', unHealthy: ''
                 warnings canComputeNew: false, canResolveRelativePaths: false, canRunOnFailed: true, consoleParsers: [[parserName: 'Foodcritic']], defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', messagesPattern: '', unHealthy: ''
-
+                junit 'junit.xml'
               }
             }
         }

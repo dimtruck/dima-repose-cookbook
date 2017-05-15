@@ -3,10 +3,11 @@ require 'chefspec'
 require 'chefspec/berkshelf'
 require 'chef/application'
 
-::LOG_LEVEL = :fatal
+::LOG_LEVEL = :fine
 ::UBUNTU_OPTS = {
   platform: 'ubuntu',
-  version: '14.04'
+  version: '14.04',
+  log_level: :debug
 }.freeze
 
 def stub_resources
