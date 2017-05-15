@@ -1,0 +1,38 @@
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <title>Coverage Information - ChefSpec</title>
+    <link rel="stylesheet" href="http://ac139410bbaaa50205e5-7c65a795a740bfb45f0c02fdf8473bba.r34.cf1.rackcdn.com/jenkins.css"/>
+  </head>
+  <body>
+    <h1>Coverage Information - ChefSpec</h1>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class='right_align'>Resources</th>
+            <th class="right_align">Covered</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <td class="left_align">TOTAL (<%= @coverage %>%%)</td>
+            <td class='right_align'><tt><%= @total %></tt></td>
+            <td class='right_align'><tt><%= @touched %></tt></td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <% @all_resources.each_with_index do |resource,i| %>
+            <tr class="all_files all_coverage <%= i.odd? ? 'odd' : 'even' %> <%= resource.touched? ? 'covered' : 'notcovered' %>">
+              <td class="left_align"><%= resource.source_file %>:<%= resource.source_line %></td>
+              <td class='right_align'><%= resource.to_s.ljust(48) %></td>
+              <td class='right_align'><%=resource.touched? ? "yes" : "no" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
