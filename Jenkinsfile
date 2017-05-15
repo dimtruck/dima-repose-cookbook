@@ -7,6 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh 'bundle install --path vendor'
             }
         }
         stage('Test') {
