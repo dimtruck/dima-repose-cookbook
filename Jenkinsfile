@@ -24,7 +24,6 @@ pipeline {
                 warnings canComputeNew: false, canResolveRelativePaths: false, canRunOnFailed: true, consoleParsers: [[parserName: 'Foodcritic']], defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', messagesPattern: '', unHealthy: ''
                 junit 'junit.xml'
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: '', reportFiles: 'index.html', reportName: 'ChefSpec Report', reportTitles: ''])
-
               }
             }
         }
@@ -34,6 +33,11 @@ pipeline {
                 sh 'kitchen list'
                 sh 'kitchen test default'
            }
+            post {
+              always {
+                junit 'junit.xml'
+              }
+            }
         }
         stage('Deploy') {
             steps {

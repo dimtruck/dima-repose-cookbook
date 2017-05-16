@@ -8,6 +8,7 @@ driver:
   use_sudo: false
   disable_upstart: false
   run_command: /sbin/init
+  run_options: -v $(pwd):/opt
   provision_command:
     - mkdir -p /var/run/sshd
 driver_config:
