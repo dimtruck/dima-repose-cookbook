@@ -31,11 +31,11 @@ pipeline {
            steps {
                 echo 'Integration...'
                 sh 'kitchen list'
-                sh 'kitchen test default'
+                sh 'kitchen test -c 2'
            }
             post {
               always {
-                junit 'junit.xml'
+                junit 'serverspec*.xml'
               }
             }
         }
