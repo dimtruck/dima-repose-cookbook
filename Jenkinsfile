@@ -28,6 +28,13 @@ pipeline {
               }
             }
         }
+        stage('Integration Tests') {
+           steps {
+                echo 'Integration...'
+                sh 'kitchen list'
+                sh 'kitchen test default'
+           }
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'

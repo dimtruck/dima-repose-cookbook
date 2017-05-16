@@ -2,6 +2,10 @@
 driver:
   name: docker
   privileged: true
+  # point to docker process on jenkins
+  binary: /usr/bin/docker
+  # kitchen tries to run as sudo by default.  Won't work on jenkins
+  use_sudo: false
   disable_upstart: false
   run_command: /sbin/init
   provision_command:
