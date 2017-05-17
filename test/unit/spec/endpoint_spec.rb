@@ -16,13 +16,13 @@ describe 'dima-repose::endpoint' do
     expect(chef_run).to install_python_package('gunicorn')
   end
 
-  #it 'installs httpbin python package' do
-  #  expect(chef_run).to install_python_package('httpbin')
-  #end
+  # it 'installs httpbin python package' do
+  #   expect(chef_run).to install_python_package('httpbin')
+  # end
 
-  #it 'installs python 2' do
-  #  expect(chef_run).to install_python_runtime('2')
-  #end
+  # it 'installs python 2' do
+  #   expect(chef_run).to install_python_runtime('2')
+  # end
 
   it 'sets up gunicorn-service runit service' do
     expect(chef_run).to enable_runit_service('gunicorn-service')

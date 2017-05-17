@@ -15,11 +15,9 @@ ChefSpec::Coverage.start! do
   end
 end
 
-::LOG_LEVEL = :debug
 ::UBUNTU_OPTS = {
   platform: 'ubuntu',
-  version: '14.04',
-  log_level: :debug
+  version: '14.04'
 }.freeze
 
 def stub_resources
