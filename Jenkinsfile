@@ -31,7 +31,7 @@ pipeline {
            steps {
                 echo 'Integration...'
                 sh 'kitchen list'
-                sh 'kitchen test -c 2'
+                sh 'kitchen test default'
            }
             post {
               always {
