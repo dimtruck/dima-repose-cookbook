@@ -1,8 +1,16 @@
+default['repose']['version'] = '8.5.0.1'
+default['repose']['owner'] = 'repose'
+default['repose']['group'] = 'repose'
+
 normal['repose']['header_normalization']['whitelist'] = [
   { 'id' => 'headers',
     'headers' => ['Auth-Token', 'Host'] }
 ]
 normal['repose']['header_normalization']['blacklist'] = []
+
+default['java']['jdk_version'] = '8'
+default['java']['remove_deprecated_packages'] = true
+default['java']['oracle']['accept_oracle_download_terms'] = true
 
 default['repose']['keystone_v2']['username_admin'] = 'dimatest'
 default['repose']['keystone_v2']['password_admin'] = 'dimapassword'
