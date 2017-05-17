@@ -4,7 +4,7 @@ require 'bundler/setup'
 require 'rubocop/rake_task'
 require 'foodcritic'
 
-desc "Run RuboCop on the lib directory" 
+desc 'Run RuboCop on the lib directory'
 RuboCop::RakeTask.new(:rubocop) do |task|
   task.fail_on_error = true
   task.requires = ['rubocop/formatter/checkstyle_formatter']
