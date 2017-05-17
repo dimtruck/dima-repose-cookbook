@@ -7,12 +7,16 @@ pipeline {
         stage('Build') {
             steps {
                 echo "My branch is: ${env.BRANCH_NAME}"
-                echo "My real branch is: ${'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()}"
                 echo 'Building..'
                 sh 'bundle install'
             }
         }
         stage('Local Tests') {
+            when {
+                expression {
+                   BRANCH_NAME != 'master'
+                }
+            }
             steps {
                 echo 'Testing..'
                 sh 'bundle exec rake rubocop'
@@ -30,6 +34,11 @@ pipeline {
             }
         }
         stage('Integration Tests') {
+            when {
+                expression {
+                   BRANCH_NAME != 'master'
+                }
+            }
            steps {
                 echo 'Integration...'
                 sh 'kitchen list'
@@ -42,6 +51,11 @@ pipeline {
             }
         }
         stage('Deploy') {
+            when {
+                expression {
+                   BRANCH_NAME == 'master'
+                }
+            }
             steps {
                 echo 'Deploying....'
             }
