@@ -6,7 +6,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "My branch is: ${env.BRANCH_NAME}"
                 echo 'Building..'
                 sh 'bundle install'
             }
