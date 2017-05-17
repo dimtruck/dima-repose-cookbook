@@ -6,6 +6,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                echo "My branch is: ${env.BRANCH_NAME}"
+                echo "My real branch is: ${'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()}"
                 echo 'Building..'
                 sh 'bundle install'
             }
