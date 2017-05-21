@@ -1,2 +1,7 @@
 .kitchen/
 .kitchen.local.yml
+chef/
+index.html
+int-lint-results.xml
+junit.xml
+privkey

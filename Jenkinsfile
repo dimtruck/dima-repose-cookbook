@@ -57,16 +57,19 @@ pipeline {
             }
             steps {
                 echo 'Deploying....'
-                withCredentials([file(credentialsId: 'chef-pem', variable: 'CHEFPEM')]) {
-                    echo $CHEFPEM
-                    sh 'stove login --username dimtruck --key ~/.chef/dimtruck.pem
+                withCredentials([file(credentialsId: 'chef-pem', variable: 'CHEFPEM'), usernamePassword(credentialsId: 'dima-token', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME'), file(credentialsId: 'deploy-key', variable: 'DEPLOYKEY')]) {
+                    sh "git config --local core.sshCommand 'ssh -i $DEPLOYKEY' "
+                    sh "cp $DEPLOYKEY privkey"
+                    sh "git config --local core.sshCommand 'ssh -i privkey -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' "
+                    sh 'git config --global user.name dimtruck'
+                    sh 'git config --global user.email dimalg@yahoo.com'
+                    sh 'git config --local url."git@github.com:".insteadOf https://github.com/'
+                    sh 'git remote -v'
+                    sh 'stove login --username dimtruck --key $CHEFPEM'
+                    sh 'git checkout $BRANCH_NAME && git pull origin $BRANCH_NAME'
+                    sh 'bundle exec rake deploy'
                 }
             }
         }
     }
-    //post {
-     // always {
-        // deleteDir() /* clean up our workspace */
-    //  }
-   // }
 }
