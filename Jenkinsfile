@@ -6,7 +6,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "My branch is: ${env.BRANCH_NAME}"
                 echo 'Building..'
                 sh 'bundle install'
             }
@@ -58,6 +57,10 @@ pipeline {
             }
             steps {
                 echo 'Deploying....'
+                withCredentials([file(credentialsId: 'chef-pem', variable: 'CHEFPEM')]) {
+                    echo $CHEFPEM
+                    sh 'stove login --username dimtruck --key ~/.chef/dimtruck.pem
+                }
             }
         }
     }
