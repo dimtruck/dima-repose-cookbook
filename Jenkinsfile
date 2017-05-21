@@ -57,6 +57,10 @@ pipeline {
             }
             steps {
                 echo 'Deploying....'
+                withCredentials([file(credentialsId: 'chef-pem', variable: 'CHEFPEM')]) {
+                    echo $CHEFPEM
+                    sh 'stove login --username dimtruck --key ~/.chef/dimtruck.pem
+                }
             }
         }
     }

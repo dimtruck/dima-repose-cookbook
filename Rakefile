@@ -2,6 +2,7 @@ require 'rake'
 require 'rspec/core/rake_task'
 require 'bundler/setup'
 require 'rubocop/rake_task'
+require 'stove/rake_task'
 require 'foodcritic'
 
 desc 'Run RuboCop on the lib directory'
@@ -29,5 +30,8 @@ RSpec::Core::RakeTask.new(:unit) do |t|
   end.join(' ')
   t.pattern = 'test/unit/spec/*_spec.rb'
 end
+
+desc 'Deploy cookbook'
+Stove::RakeTask.new(:deploy)
 
 task default: %w[rubocop foodcritic unit]
