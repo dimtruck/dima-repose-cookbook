@@ -7,7 +7,7 @@ chef_version '13.0.118'
 supports 'ubuntu'
 supports 'debian'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '0.0.2'
+version '0.0.3'
 if respond_to?(:issues_url)
   issues_url 'https://github.com/dimtruck/dima-repose-cookbook/issues'
 end
