@@ -58,9 +58,7 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 withCredentials([file(credentialsId: 'chef-pem', variable: 'CHEFPEM'), usernamePassword(credentialsId: 'dima-token', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME'), file(credentialsId: 'deploy-key', variable: 'DEPLOYKEY')]) {
-                    sh "git config --local core.sshCommand 'ssh -i $DEPLOYKEY' "
-                    sh "cp $DEPLOYKEY privkey"
-                    sh "git config --local core.sshCommand 'ssh -i privkey -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' "
+                    sh "git config --local core.sshCommand 'ssh -i $DEPLOYKEY' -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' "
                     sh 'git config --global user.name dimtruck'
                     sh 'git config --global user.email dimalg@yahoo.com'
                     sh 'git config --local url."git@github.com:".insteadOf https://github.com/'
