@@ -41,6 +41,8 @@ pipeline {
            steps {
                 echo 'Integration...'
                 sh 'kitchen list'
+                sh 'KITCHEN_LOCAL_YAML=.kitchen.inspec.yml kitchen list'
+                sh 'KITCHEN_LOCAL_YAML=.kitchen.inspec.yml kitchen test default'
                 sh 'kitchen test default'
            }
             post {
