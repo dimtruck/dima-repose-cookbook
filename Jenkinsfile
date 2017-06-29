@@ -39,15 +39,21 @@ pipeline {
                 }
             }
            steps {
-                echo 'Integration...'
-                sh 'kitchen list'
-                sh 'KITCHEN_LOCAL_YAML=.kitchen.inspec.yml kitchen list'
-                sh 'KITCHEN_LOCAL_YAML=.kitchen.inspec.yml kitchen test default'
-                sh 'kitchen test default'
-           }
+                parallel (
+                   "integration" : {
+                        sh 'KITCHEN_LOCAL_YAML=.kitchen.inspec.yml kitchen list'
+                        sh 'KITCHEN_LOCAL_YAML=.kitchen.inspec.yml kitchen test default'
+                   },
+                   "compliance" : {
+                        sh 'kitchen list'
+                        sh 'kitchen test default'
+                   }
+               )
+           }        
             post {
               always {
                 junit 'serverspec*.xml'
+                junit '*inspec.xml'
               }
             }
         }

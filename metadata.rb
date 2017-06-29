@@ -3,9 +3,9 @@ maintainer 'Dimitry Ushakov'
 maintainer_email 'repose@dimitryushakov.com'
 license 'MIT'
 description 'Installs/Configures dima repose'
-chef_version '13.0.118'
 supports 'ubuntu'
 supports 'debian'
+chef_version '13.0.118'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '0.0.3'
 if respond_to?(:issues_url)

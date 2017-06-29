@@ -1,0 +1,10 @@
+name: profile
+title: InSpec Repose Profile
+maintainer: Dimitry Ushakov
+copyright: Dimitry Ushakov
+copyright_email: dimitry.ushakov@rackspace.com
+license: Apache-2.0
+summary: Repose InSpec Compliance Profile
+version: 1.0.0
+supports:
+  - os-family: unix
