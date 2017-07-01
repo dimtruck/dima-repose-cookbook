@@ -1,47 +1,45 @@
 # encoding: utf-8
-# copyright: 2015, Chef Software, Inc.
-# license: All rights reserved
 
-title '/tmp profile'
+title 'Repose profile'
 
 # you add controls here
-control "repose-1.0" do                        # A unique ID for this control
-  impact 0.7                                # The criticality, if this control fails.
-  title "Create /etc/repose directory"             # A human-readable title
-  desc "An optional description..."         # Describe why this is needed
-  tag data: "config data"                     # A tag allows you to associate key information
-  tag "security"                            # to the test
-  ref "Document A-12", url: 'http://wiki.openrepose.org'    # Additional references
+control 'repose-1.0' do
+  impact 0.7
+  title 'Create /etc/repose directory'
+  desc 'An optional description...'
+  tag data: 'config data'
+  tag 'security'
+  ref 'Document A-12', url: 'http://wiki.openrepose.org'
 
-  describe file('/etc/repose') do                  # The actual test
+  describe file('/etc/repose') do
     it { should be_directory }
   end
 end
 
-control "repose-valve-1.0" do                        # A unique ID for this control
-  impact 0.7                                # The criticality, if this control fails.
-  title "Create /usr/share/repose directory"             # A human-readable title
-  desc "An optional description..."         # Describe why this is needed
-  tag data: "config data"                     # A tag allows you to associate key information
-  tag "security"                            # to the test
-  ref "Document A-12", url: 'http://wiki.openrepose.org'    # Additional references
+control 'repose-valve-1.0' do
+  impact 0.7
+  title 'Create /usr/share/repose directory'
+  desc 'An optional description...'
+  tag data: 'config data'
+  tag 'security'
+  ref 'Document A-12', url: 'http://wiki.openrepose.org'
 
-  describe file('/usr/share/repose') do                  # The actual test
+  describe file('/usr/share/repose') do
     it { should be_directory }
   end
 
-  describe command('which java') do                  # The actual test
-    its('stdout') { should match /bin/ }
+  describe command('which java') do
+    its('stdout') { should match(/bin/) }
     its('stderr') { should eq '' }
     its('exit_status') { should eq 0 }
   end
 end
 
-control "repose-config-owner" do
+control 'repose-config-owner' do
   impact 0.8
-  title "repose config should have proper ownership"
-  tag data: "config perms"
-  tag "security"
+  title 'repose config should have proper ownership'
+  tag data: 'config perms'
+  tag 'security'
 
   describe directory('/etc/repose/') do
     it { should exist }
