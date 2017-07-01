@@ -1,5 +1,3 @@
-require_relative 'spec_helper'
-
 describe file('/etc/sysconfig/repose') do
   it { should be_file }
   it { should be_owned_by 'root' }

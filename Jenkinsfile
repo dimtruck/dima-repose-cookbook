@@ -39,16 +39,8 @@ pipeline {
                 }
             }
            steps {
-                parallel (
-                   "integration" : {
-                        sh 'KITCHEN_LOCAL_YAML=.kitchen.inspec.yml kitchen list'
-                        sh 'KITCHEN_LOCAL_YAML=.kitchen.inspec.yml kitchen test default'
-                   },
-                   "compliance" : {
-                        sh 'kitchen list'
-                        sh 'kitchen test default'
-                   }
-               )
+               sh 'KITCHEN_LOCAL_YAML=.kitchen.inspec.yml kitchen list'
+               sh 'KITCHEN_LOCAL_YAML=.kitchen.inspec.yml kitchen test default'
            }        
             post {
               always {
@@ -78,9 +70,9 @@ pipeline {
             }
         }
     }
-/*    post {
+    post {
       always {
          deleteDir() 
       }
-    }*/
+    }
 }
