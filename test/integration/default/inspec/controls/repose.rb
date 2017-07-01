@@ -48,8 +48,8 @@ control "repose-config-owner" do
     it { should be_directory }
     it { should be_readable }
     it { should be_writable }
-    it { should be_executable.by_user('root') }
-    it { should be_owned_by 'root' }
-    its('mode') { should cmp '0644' }
+    it { should be_executable.by_user('repose') }
+    it { should be_owned_by 'repose' }
+    its('mode') { should cmp '0755' }
   end
 end

@@ -8,7 +8,6 @@ driver:
   use_sudo: false
   disable_upstart: false
   run_command: /sbin/init
-  run_options: -v $(pwd):/opt/test
   provision_command:
     - mkdir -p /var/run/sshd
 driver_config:
@@ -25,7 +24,7 @@ provisioner:
 verifier:
   name: inspec
   format: junit
-  output: /opt/test/%{platform}_%{suite}_inspec.xml
+  output: "%{platform}_%{suite}_inspec.xml"
 
 platforms:
   - name: ubuntu-14.04
