@@ -44,7 +44,6 @@ pipeline {
            }        
             post {
               always {
-                junit 'serverspec*.xml'
                 junit '*inspec.xml'
               }
             }
