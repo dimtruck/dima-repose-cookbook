@@ -39,13 +39,12 @@ pipeline {
                 }
             }
            steps {
-                echo 'Integration...'
-                sh 'kitchen list'
-                sh 'kitchen test default'
-           }
+               sh 'KITCHEN_LOCAL_YAML=.kitchen.inspec.yml kitchen list'
+               sh 'KITCHEN_LOCAL_YAML=.kitchen.inspec.yml kitchen test default'
+           }        
             post {
               always {
-                junit 'serverspec*.xml'
+                junit '*inspec.xml'
               }
             }
         }
@@ -72,7 +71,7 @@ pipeline {
     }
     post {
       always {
-         deleteDir() /* clean up our workspace */
+         deleteDir() 
       }
     }
 }

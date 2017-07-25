@@ -23,7 +23,7 @@ RUN add-apt-repository \
 RUN apt-get update && apt-get install docker-ce -y && \
     rm -rf /var/lib/apt/lists/*
 
-ADD dockersetup /usr/local/bin/dockersetup
+ADD wrapdocker /usr/local/bin/dockersetup
 RUN chmod +x /usr/local/bin/dockersetup
 VOLUME /var/lib/docker
 
